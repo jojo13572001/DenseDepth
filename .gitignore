@@ -1,0 +1,11 @@
+/__pycache__
+/models
+/*.h5
+/*.zip
+/.vscode
+*.obj
+/nyu.onnx
+/nyu.pb
+/nyu.tflite
+/nyu2.pb
+/nyuQuan.tflite

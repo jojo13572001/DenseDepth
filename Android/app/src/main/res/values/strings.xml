@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DenseDepth</string>
+    <string name="toggle_camera">Toggle Camera</string>
+    <string name="dense_depth">DenseDepth</string>
+</resources>
