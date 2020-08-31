@@ -6,6 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import org.tensorflow.lite.Interpreter;
+import org.tensorflow.lite.gpu.GpuDelegate;
+
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,7 +29,9 @@ public class TensorflowDepthEstimator implements Estimator {
     private static final int IMAGE_MEAN = 128;
     private static final float IMAGE_STD = 128.0f;
 
+
     private Interpreter interpreter;
+    private GpuDelegate delegate;
     private int inputWidthSize = 640, inputHeightSize = 480;
     private boolean quant;
 
@@ -36,7 +41,9 @@ public class TensorflowDepthEstimator implements Estimator {
 
     static Estimator create(AssetManager assetManager, String modelPath, boolean quant) throws IOException {
         TensorflowDepthEstimator depthEstimator = new TensorflowDepthEstimator();
-        depthEstimator.interpreter = new Interpreter(depthEstimator.loadModelFile(assetManager, modelPath), new Interpreter.Options());
+        depthEstimator.delegate = new GpuDelegate();
+        Interpreter.Options options = (new Interpreter.Options()).addDelegate(depthEstimator.delegate);
+        depthEstimator.interpreter = new Interpreter(depthEstimator.loadModelFile(assetManager, modelPath), options);
         depthEstimator.quant = quant;
         return depthEstimator;
     }
@@ -59,6 +66,7 @@ public class TensorflowDepthEstimator implements Estimator {
     @Override
     public void close() {
         interpreter.close();
+        delegate.close();
         interpreter = null;
     }
 
