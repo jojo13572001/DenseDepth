@@ -9,7 +9,7 @@ Modify from https://github.com/ialhashim/DenseDepth and https://github.com/amits
  2. The keras model can't be loaded from TFLiteConverter.from_saved_model() because dynamic input shape [NONE, NONE, NONE, NONE] is not supported  
  
  Solution:  
- After loading .pb, converting its input shape to fixed shape [1, 480, 640, 3] in the session graph. Resave .pb from session graph.Load .pb again for inference. (converting and inferring directly without resave firstly will has problem!!)
+ After loading .pb, converting its input shape to fixed shape [1, 480, 640, 3] in the session graph. Resave .pb from session graph. Load .pb again for inference. (converting and inferring directly without resave firstly will has problem!!)
 ## Results
 * Comparision of Keras, Tensorflow2.2 and Tensorflow-lite model over NYU Depth V2
   <img width="500" src="result.png"><img width="180" src="android.jpg">
