@@ -8,8 +8,10 @@ Modify from https://github.com/ialhashim/DenseDepth and https://github.com/amits
  1. The keras model can't be loaded from TFLiteConverter.from_keras_model() because custom_objects parsing isn't supported
  2. The keras model can't be loaded from TFLiteConverter.from_saved_model() because dynamic input shape [NONE, NONE, NONE, NONE] is not supported  
  
- Solution:  
- After loading .pb, converting its input shape to fixed shape [1, 480, 640, 3] in the session graph. Resave .pb from session graph. Load .pb again for inference. (converting and inferring directly without resave firstly will has problem!!)
+ Solution Steps:  
+ 1. After loading .pb, converting its input shape to fixed shape [1, 480, 640, 3] in the session graph. 
+ 2. Resave .pb from session graph. (Very improtant! converting and inferring directly without resave won't succeed...)
+ 3. Load .pb again for inference.
 ## Results
 * Comparision of Keras, Tensorflow2.2 and Tensorflow-lite model over NYU Depth V2
   <img width="500" src="result.png"><img width="180" src="android.jpg">
