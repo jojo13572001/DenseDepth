@@ -1,4 +1,4 @@
-Modify from https://github.com/ialhashim/DenseDepth and https://github.com/amitshekhariitbhu/Android-TensorFlow-Lite-Example  
+Modify from [DenseDepth](https://github.com/ialhashim/DenseDepth) and [Android Object Detection](https://github.com/amitshekhariitbhu/Android-TensorFlow-Lite-Example)  
 ## Main Contributions:
  1. Porting source from tensorflow1.x to tensorflow2.2
  2. Convert pre-trained keras model(.h5) to tensorflow2.2(.pb) and tensorflow-lite(.tflite)
